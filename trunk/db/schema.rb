@@ -14,6 +14,8 @@ ActiveRecord::Schema.define(:version => 0) do
   create_table "people", :force => true do |t|
     t.string "fam_name", :limit => 50
     t.string "surname",  :limit => 50
+    t.datetime "created_at"
+    t.datetime "updated_at"
   end
 
 end
