@@ -15,9 +15,13 @@ class PeopleController < ApplicationController
   end
   
   def save
-    @person_list = Person.find(params['id'])  
-    @person_list.attributes = params['person']
-    @person_list.save
+    @person = Person.find(params['id'])  
+    @person.attributes = params['person']
+    @person.save
+  end
+  
+  def view
+    @person = Person.find(params['id'])
   end
   
 end

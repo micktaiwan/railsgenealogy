@@ -1,2 +1,2 @@
-page["new_form"].replace_html :partial => 'edit_person', :object => @person_list
+page["edit"].replace_html :partial => 'edit_person', :object => @person_list
 

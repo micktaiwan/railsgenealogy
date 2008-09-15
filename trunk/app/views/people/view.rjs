@@ -1,2 +1,1 @@
 page["edit"].replace_html :partial => 'person', :object => @person
-

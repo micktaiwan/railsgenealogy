@@ -1,10 +1,21 @@
-
-<%=link_to_remote('Entrer un nouveau nom', :url=>{ :controller=>'people', :action=>'get_new_form'}, :update=>'new_form')%><br/>
-<div id='new_form'></div>
-
-<br/>
+<div id="side">
 Noms dans la base:<br/>
 <br/>
 <ul>
 <%= render(:partial=>'people/person_list', :collection=>@people) %>
 </ul>
+</div>
+
+
+
+<div id="main">
+<%=link_to_remote('Entrer un nouveau nom',
+  :url=>{ :controller=>'people', :action=>'get_new_form'},
+  :update=>'edit')%><br/>
+<br/>
+<div id='edit'></div><br/>
+</div>
+
+
+
+
