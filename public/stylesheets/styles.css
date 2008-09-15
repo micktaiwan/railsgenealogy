@@ -1,31 +1,42 @@
-body {
+html, body {
   min-width:640px;
   font-family: Tahoma, Arial, sans-serif;
   font-size: 12px;
   margin: 0px 0px 0px 10px;
+  height:100%;
   }
 
-#header,#menu,#content,#sub-section,#footer {
-overflow:hidden;
-display:inline-block
-}
-
+#header,#menu {
+  position: relative;
+  float:left
+  }
+  
 #menu {
   line-height: 60px;
   vertical-align: bottom;
+  width:79.2%;
   }
 
-h1 {
-  
+#content,#footer {width:99%}
+
+
+#header {
+  width:20%;
   }
 
+#side {
+  float:right;
+  width:29.2%
+  }
 
-/* safari and opera need this */
-
-#content,#sub-section,#footer {width:100%}
-#header,#menu {float:left}
-#header {width:20%}
-
-/* IE5 Mac won't take all */
-#menu {width:79.2%}
-#content {clear:left}
+#content {
+  position: relative;
+  clear:left;
+  min-height:90%; /* real browsers */
+  height:auto !important; /* real browsers */
+  height:90%; /* IE6: treaded as min-height*/
+  }
+#footer {
+  position: absolute;
+  bottom: 0;
+  }
