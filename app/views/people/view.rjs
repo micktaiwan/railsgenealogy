@@ -1,3 +1,9 @@
-page["edit"].replace_html :partial => 'person', :object => @person
-page << "new_person('person_"+@person.id.to_s+"');"
+#page["edit"].replace_html :partial => 'person', :object => @person
+
+id = @person.id.to_s
+name = @person.surname + " " + @person.fam_name
+
+page << "p = new Person("+id+",'"+name+"');"
+#page << "new Effect.Move('"+p.element.id+"', { x: 20, y: 30, mode: 'relative', delay: 0.2 });"
+#page << "p.add_family();"
 
