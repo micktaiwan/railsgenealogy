@@ -1,0 +1,31 @@
+body {
+  min-width:640px;
+  font-family: Tahoma, Arial, sans-serif;
+  font-size: 12px;
+  margin: 0px 0px 0px 10px;
+  }
+
+#header,#menu,#content,#sub-section,#footer {
+overflow:hidden;
+display:inline-block
+}
+
+#menu {
+  line-height: 60px;
+  vertical-align: bottom;
+  }
+
+h1 {
+  
+  }
+
+
+/* safari and opera need this */
+
+#content,#sub-section,#footer {width:100%}
+#header,#menu {float:left}
+#header {width:20%}
+
+/* IE5 Mac won't take all */
+#menu {width:79.2%}
+#content {clear:left}
