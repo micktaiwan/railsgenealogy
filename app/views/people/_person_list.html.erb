@@ -1,4 +1,5 @@
 <li>
 <%= person_list.surname %>
 <%= person_list.fam_name %>
+<%=link_to_remote(image_tag('edit.gif', :border=>0),:url=>{:controller=>'people', :action=>'edit', :id=>person_list.id})%>
 </li>
