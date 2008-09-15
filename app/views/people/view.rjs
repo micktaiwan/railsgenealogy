@@ -1,1 +1,3 @@
 page["edit"].replace_html :partial => 'person', :object => @person
+page << "new_person('person_"+@person.id.to_s+"');"
+
