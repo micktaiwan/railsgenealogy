@@ -3,7 +3,7 @@
 id = @person.id.to_s
 name = @person.surname + " " + @person.fam_name
 
-page << "p = new Person("+id+",'"+name+"');"
-#page << "new Effect.Move('"+p.element.id+"', { x: 20, y: 30, mode: 'relative', delay: 0.2 });"
+page << "p = graph.add_person("+id+",'"+name+"');"
+page << "p.highlight();"
 #page << "p.add_family();"
 
