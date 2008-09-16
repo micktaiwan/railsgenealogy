@@ -18,7 +18,9 @@ function Graph() {
     return -1;
     }
 
-  this.add_person = function(id, text) {
+  // add a person to the graph
+  // will verify if the person is already in the graph 
+  this.add_person = function(id) {
     // First see id this person is already in the graph
     log('graph add_person');
     i = contains(id)
@@ -27,7 +29,8 @@ function Graph() {
       return _graph[i];
       }
     else {
-      p = new Person(id,text);
+      log('adding '+id);
+      p = new Person(id);
       _graph.push(p);
       return p;
       }    
@@ -37,31 +40,46 @@ function Graph() {
  
 
 // Class Person
-// inputs: DB id of the person 
-function Person(id, text) {
-  log('new Person '+id+' '+text);
+// inputs:
+//  DB id of the person
+//  text: the text to display
+function Person(id) {
+  log('new Person '+id);
   this.id = id
-  this.element = document.createElement('div');
-  this.element.innerHTML = text;
-  $('edit').appendChild(this.element);
-  this.element.setAttribute('id','person_'+id);
-  this.element.setAttribute('class','person');
+  
+  this.element = $('person_'+id);
+  if(this.element == null) {
+    alert('Before adding a element to the graph, you must create it in the DOM');
+    return;
+    }
   new Draggable(this.element.id);
-  //new Effect.Move(this.element.id, { x: 20, y: 30, mode: 'relative', delay: 0.1 });
   new Effect.Shake(this.element.id, {duration: 0.1});
+  //new Effect.Move(this.element.id, { x: 20, y: 30, mode: 'relative', delay: 0.1 });
+
+  // the element graphical aspect is generated from a partial
+  //db_update(id);
+  
+  this.update_db = function(id) {
+    new Ajax.Request('/person/xxx_todo', {onComplete: function(t) {
+        this.element.innerHTML = t.responseText;
+        }
+      });
+    }
+
 
   // add all family members in the graphic
   // inputs: DB id of the person
   this.add_family = function() {
     //this.element.innerHTML = 'not done yet';
     }
-    
+  
+  // just hightlight the element in the graph 
   this.highlight = function() {
     new Effect.Highlight(this.element.id, {duration: 2});
     }
   }
 
   
- // globale variable for the application
- var graph = new Graph();
- 
+// globale variable for the application
+var graph = new Graph();
+

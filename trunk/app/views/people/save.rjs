@@ -1,2 +1,2 @@
-page["edit"].replace_html :partial => 'person', :object => @person
+page["edit"].replace_html @person.surname + ' saved.'
 

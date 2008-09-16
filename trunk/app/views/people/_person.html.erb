@@ -1,6 +1,12 @@
 <div class="person" id="person_<%= person.id %>">
 <%= person.surname %> <%= person.fam_name %>
 
+<a href="#" onclick="new Effect.toggle('more_<%= person.id %>','blind',{duration:0.5});return false;">more</a>...<br/>
+
+<div id="more_<%= person.id %>" style="display:none">
+<br/>
+Pleins d'infos sur la personne, avec les options de pouvoir faire des relations avec d'autres...
+à venir sur vos écrans prochainement !
 </div>
 
-
+</div>

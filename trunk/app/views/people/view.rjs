@@ -1,9 +1,13 @@
-#page["edit"].replace_html :partial => 'person', :object => @person
-
 id = @person.id.to_s
-name = @person.surname + " " + @person.fam_name
 
-page << "p = graph.add_person("+id+",'"+name+"');"
+# insert graphically the element
+page << "if(!$('person_"+id+"')) {"
+page.insert_html :bottom, 'graph', {:partial => 'person', :object => @person}
+page << "}"
+
+# then insert it in the graph object
+page << "p = graph.add_person("+id+");"
+
 page << "p.highlight();"
 #page << "p.add_family();"
 
