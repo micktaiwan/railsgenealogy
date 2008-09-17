@@ -49,3 +49,20 @@ html, body {
   padding: 5px;
   cursor: move;  
   }
+  
+.form {
+  position: relative;
+  width: 400px;
+  border: 1px solid #AA9;
+  background: #FF9;
+  padding: 5px;
+  cursor: move;  
+  }
+label {
+  width: 60px;
+  float: left;
+  text-align: right;
+  margin-right: 4px;
+  display: block
+  }
+

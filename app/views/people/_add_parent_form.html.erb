@@ -1,0 +1,18 @@
+<div class="form">
+Vous avez le choix entre:<br/>
+<br/>
+A) Chercher un nom dans la base:<br/>
+sauf que je l'ai pas encore fait<br/>
+
+
+<br/>
+
+B) <%=link_to_remote('Ajouter une personne',
+  :url=>{ :controller=>'people', :action=>'get_new_form', :role=>:father, :id=>@person},
+  :update=>'edit')%><br/>
+<br/>
+<br/>
+Donc là vous vous dites, "ben j'ai pas vraiment le choix", et là je vous répondrais, "ben non".<br/>
+Et une fois fait, on voit même pas encore les relations, donc bon hein....
+</div>
+

@@ -1,6 +1,27 @@
-<% form_remote_tag(:url => { :action => "create" }, :update=>'edit') do %>
-  Prénom: <%= text_field :person, :surname %><br/>
-  Nom: <%= text_field :person, :fam_name %><br/>
-  <%= submit_tag 'Ajouter' %>
+<div class="form">
+<% if(role != nil) %>
+Vous ajoutez une nouvelle relation:<br/>
+<br/>
 <% end %>
 
+<% form_remote_tag(:url => { :action => "create" }, :update=>'edit') do %>
+  
+  <label for='person_name'>Prénom:</label>
+  <%= text_field :person, :surname, :size=>10 %><br/>
+  
+  <label for='person_fam_name'>Nom:
+  </label>
+  <%= text_field :person, :fam_name, :size=>10 %> de jeune fille pour une femme<br/>
+  <br/>
+  
+  
+  <label for='submit'>&nbsp;</label>
+  <%= submit_tag 'Ajouter' %>
+  
+<% if(role != nil) %>
+<input type="hidden" name="role" value="<%=role%>">
+<input type="hidden" name="for_id" value="<%=id%>">
+<% end %>
+  
+<% end %>
+</div>
