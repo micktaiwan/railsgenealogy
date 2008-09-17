@@ -36,7 +36,7 @@ class PeopleController < ApplicationController
   
   def add_parent_form
     @person = Person.find(params['id'])
-    render(:partial=>'add_parent_form')
+    render(:partial=>'add_parent_form', :locals=>{:role=>params['role']})
   end
   
 end
