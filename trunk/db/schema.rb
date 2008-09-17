@@ -9,13 +9,15 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 0) do
+ActiveRecord::Schema.define(:version => 20080917174118) do
 
   create_table "people", :force => true do |t|
-    t.string "fam_name", :limit => 50
-    t.string "surname",  :limit => 50
+    t.string   "fam_name",   :limit => 50
+    t.string   "surname",    :limit => 50
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.integer  "father_id"
+    t.integer  "mother_id"
   end
 
 end
