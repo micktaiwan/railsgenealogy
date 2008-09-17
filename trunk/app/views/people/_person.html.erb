@@ -5,16 +5,19 @@
 
 <div id="more_<%= person.id %>" style="display:none">
 <br/>
+
 <% if(person.father_id == nil) %>
-<%=link_to_remote('Ajouter le père', :url=>{:action=>'add_parent_form',:id=>@person}, :update=>'edit')%>
+<%=link_to_remote('Ajouter son père', :url=>{:action=>'add_parent_form',:id=>@person,:role=>:father}, :update=>'edit')%>
 <br/>
 <% else %>
 Père: <%= render(:partial=>'people/person_list', :object=>@person.father) %>
-
 <% end %>
-
-Pleins d'infos sur la personne, avec les options de pouvoir faire des relations avec d'autres...
-à venir sur vos écrans prochainement !
+<% if(person.mother_id == nil) %>
+<%=link_to_remote('Ajouter sa mère', :url=>{:action=>'add_parent_form',:id=>@person,:role=>:mother}, :update=>'edit')%>
+<br/>
+<% else %>
+Mère: <%= render(:partial=>'people/person_list', :object=>@person.mother) %>
+<% end %>
 </div>
 
 </div>
