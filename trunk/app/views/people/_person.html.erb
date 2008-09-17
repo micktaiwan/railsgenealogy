@@ -1,23 +1,26 @@
 <div class="person" id="person_<%= person.id %>">
 <%= person.surname %> <%= person.fam_name %>
 
-<a href="#" onclick="new Effect.toggle('more_<%= person.id %>','blind',{duration:0.5});return false;">more</a>...<br/>
+<a href="#" onclick="new Effect.toggle('more_<%= person.id %>','blind',{duration:0.5});return false;">plus</a>...<br/>
 
 <div id="more_<%= person.id %>" style="display:none">
+<%=link_to_remote('Editer',:url=>{:controller=>'people', :action=>'edit', :id=>person.id})%>
 <br/>
 
+<ul>
 <% if(person.father_id == nil) %>
 <%=link_to_remote('Ajouter son père', :url=>{:action=>'add_parent_form',:id=>@person,:role=>:father}, :update=>'edit')%>
 <br/>
 <% else %>
-Père: <%= render(:partial=>'people/person_list', :object=>@person.father) %>
+<%= render(:partial=>'people/person_list', :object=>@person.father) %>
 <% end %>
 <% if(person.mother_id == nil) %>
 <%=link_to_remote('Ajouter sa mère', :url=>{:action=>'add_parent_form',:id=>@person,:role=>:mother}, :update=>'edit')%>
 <br/>
 <% else %>
-Mère: <%= render(:partial=>'people/person_list', :object=>@person.mother) %>
+<%= render(:partial=>'people/person_list', :object=>@person.mother) %>
 <% end %>
+</ul>
 </div>
 
 </div>

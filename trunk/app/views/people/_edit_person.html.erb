@@ -1,6 +1,14 @@
+<div class="form">
 <% form_remote_tag(:url => { :action => "save", :id=>@person.id }) do %>
-  Prénom: <%= text_field :person, :surname %><br/>
-  Nom:    <%= text_field :person, :fam_name %><br/>
+
+  <label for='person_name'>Prénom:</label>
+  <%= text_field :person, :surname, :size=>10 %><br/>
+  
+  <label for='person_fam_name'>Nom:
+  </label>
+  <%= text_field :person, :fam_name, :size=>10 %> de jeune fille pour une femme<br/>
+  <br/>
+
   <%= submit_tag 'Sauver' %>
 <% end %>
-
+</div>
