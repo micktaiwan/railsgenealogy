@@ -6,8 +6,9 @@
 <div id="more_<%= person.id %>" style="display:none">
 <%=link_to_remote('Editer',:url=>{:controller=>'people', :action=>'edit', :id=>person.id})%>
 <br/>
-
-<ul>
+<br/>
+Parents:
+<ul class="p_ul">
 <% father = person.father 
 
 if(father == nil) %>
@@ -27,6 +28,12 @@ if(mother == nil) %>
 <%= render(:partial=>'people/person_list', :object=>mother) %>
 <% end %>
 </ul>
+Enfants:
+<ul class="p_ul">
+<%= render(:partial=>'people/person_list', :collection=>person.children) %>
+</ul>
+
 </div>
 
 </div>
+
