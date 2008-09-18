@@ -58,9 +58,7 @@ class PeopleController < ApplicationController
   # type of this person: 'father', 'mother'
   # for_who: a person object
   def add_relation(from_id,reltype,to_id,notes=nil)
-    puts "type = #{reltype}"
     r = Relation.new(:from_id=>from_id,:reltype=>reltype,:to_id=>to_id,:notes=>notes)
-    puts "type = #{r.reltype}"
     r.save
   end
 
