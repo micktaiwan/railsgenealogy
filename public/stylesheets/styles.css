@@ -43,7 +43,7 @@ html, body {
   
 .person {
   position: relative;
-  width: 200px;
+  width: 220px;
   border: 1px solid #CCC;
   background: #FED;
   padding: 5px;
@@ -58,6 +58,7 @@ html, body {
   padding: 5px;
   cursor: move;  
   }
+  
 label {
   width: 60px;
   float: left;
