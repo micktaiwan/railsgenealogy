@@ -4,8 +4,8 @@
 <a href="#" onclick="new Effect.toggle('more_<%= person.id %>','blind',{duration:0.5});return false;">plus</a>...<br/>
 
 <div id="more_<%= person.id %>" style="display:none">
-<%=link_to_remote('Editer',:url=>{:controller=>'people', :action=>'edit', :id=>person.id})%>
-<br/>
+<%=link_to_remote('Editer',:url=>{:controller=>'people', :action=>'edit', :id=>person.id})%><br/>
+Naissance: <%= person.birth %><br/>
 <br/>
 Parents:
 <ul class="p_ul">
