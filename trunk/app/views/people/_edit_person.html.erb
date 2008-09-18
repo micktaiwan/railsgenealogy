@@ -7,6 +7,11 @@
   <label for='person_fam_name'>Nom:
   </label>
   <%= text_field :person, :fam_name, :size=>10 %> de jeune fille pour une femme<br/>
+  <label for='person_sex'>Homme:</label>
+  <%= radio_button :person, :sex, 0 %>
+  Femme:
+  <%= radio_button :person, :sex, 1 %><br/>
+
   <br/>
 
   <%= submit_tag 'Sauver' %>

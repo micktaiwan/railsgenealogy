@@ -3,15 +3,15 @@ class PeopleController < ApplicationController
   protect_from_forgery :except => [:auto_complete_for_search_name] 
 
   def get_new_form
-    render(:partial=>'new_form', :locals=>{:role=>params['role'], :id=>params['id']})
+    render(:partial=>'new_form', :locals=>{:reltype=>params['reltype'], :id=>params['id']})
   end
   
   def create
     @person_list = Person.new(params['person'])  
     @person_list.save
-    role = params[:role] 
-    if role != nil
-      add_relation(@person_list.id,role,Person.find(params['for_id'].to_i))
+    type = params['reltype'] 
+    if type != nil
+      add_relation(@person_list.id,type.to_i,params['for_id'].to_i)
     end
     
     render(:partial=>'person_list')
@@ -33,7 +33,7 @@ class PeopleController < ApplicationController
   
   def add_parent_form
     @person = Person.find(params['id'])
-    render(:partial=>'add_parent_form', :locals=>{:role=>params['role']})
+    render(:partial=>'add_parent_form', :locals=>{:reltype=>params['reltype']})
   end
   
   def auto_complete_for_search_name
@@ -50,19 +50,18 @@ class PeopleController < ApplicationController
       render(:text=>'Pas trouvé '+params[:search][:name]+', mais en même c\'est pas éttonant avec ma fonction de merde', :status=>500)
       return
     end
-    add_relation(@person.id,params[:role],Person.find(params['for_id'].to_i))
+    add_relation(@person.id,params['reltype'].to_i,params['for_id'].to_i)
     render(:text=>'Ajouté, mais il faut tout rafraichir, je sais c\'est chiant...')
   end
   
   # id of the new person
-  # role of this person: 'father', 'mother'
+  # type of this person: 'father', 'mother'
   # for_who: a person object
-  def add_relation(id,role,for_who)
-    case role
-    when 'father': for_who.father_id = id
-    when 'mother': for_who.mother_id = id
-    end
-    for_who.save
+  def add_relation(from_id,reltype,to_id,notes=nil)
+    puts "type = #{reltype}"
+    r = Relation.new(:from_id=>from_id,:reltype=>reltype,:to_id=>to_id,:notes=>notes)
+    puts "type = #{r.reltype}"
+    r.save
   end
 
 end

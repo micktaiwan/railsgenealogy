@@ -1,10 +1,12 @@
+
+
 <div class="form">
 Vous avez le choix entre:<br/>
 <br/>
 A) Chercher un nom existant dans la base:<br/>
 <% form_remote_tag(:url=>{:controller=>'people', :action=>'add_rel'}, :update=>{:failure=>'search', :success=>'edit'}) do %>
 <%= text_field_with_auto_complete(:search, :name, {:size=>20}, :skip_style => false) %>
-<input type="hidden" name="role" value="<%=role%>">
+<input type="hidden" name="reltype" value="<%=reltype%>">
 <input type="hidden" name="for_id" value="<%=@person.id%>">
 <%= submit_tag 'Ajouter' %>
 
@@ -13,7 +15,7 @@ A) Chercher un nom existant dans la base:<br/>
 <br/>
 
 B) <%=link_to_remote('Ajouter une personne qui n\'est pas déjà dans la base',
-  :url=>{ :controller=>'people', :action=>'get_new_form', :role=>role, :id=>@person},
+  :url=>{ :controller=>'people', :action=>'get_new_form', :reltype=>reltype, :id=>@person},
   :update=>'edit')%><br/>
 
 </div>
