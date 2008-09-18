@@ -1,6 +1,7 @@
 <li>
 <%= person_list.fam_name %>
 <%= person_list.surname %>
+<%= person_list.birth %>
 <%=link_to_remote('voir',:url=>{:controller=>'people', :action=>'view', :id=>person_list.id})%>
 <%=link_to_remote(image_tag('edit.gif', :border=>0),:url=>{:controller=>'people', :action=>'edit', :id=>person_list.id})%>
 </li>

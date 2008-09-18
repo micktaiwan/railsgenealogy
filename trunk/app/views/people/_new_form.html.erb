@@ -9,8 +9,7 @@ Vous ajoutez une nouvelle relation:<br/>
   <label for='person_name'>Prénom:</label>
   <%= text_field :person, :surname, :size=>10 %><br/>
   
-  <label for='person_fam_name'>Nom:
-  </label>
+  <label for='person_fam_name'>Nom:</label>
   <%= text_field :person, :fam_name, :size=>10 %> de jeune fille pour une femme<br/>
 
   
@@ -18,6 +17,12 @@ Vous ajoutez une nouvelle relation:<br/>
   <%= radio_button :person, :sex, 0 %>
   Femme:
   <%= radio_button :person, :sex, 1 %><br/>
+  
+  <label for='person_fam_name'>Naissance:</label>
+  <%= text_field :person, :birth, :size=>10 %> AAAA/MM/JJ on verra ça plus tard<br/>
+
+
+
   <br/>  
   <label for='submit'>&nbsp;</label>
   <%= submit_tag 'Ajouter' %>
