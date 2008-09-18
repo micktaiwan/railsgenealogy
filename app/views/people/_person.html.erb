@@ -8,17 +8,23 @@
 <br/>
 
 <ul>
-<% if(person.father_id == nil) %>
-<%=link_to_remote('Ajouter son père', :url=>{:action=>'add_parent_form',:id=>@person,:role=>:father}, :update=>'edit')%>
+<% father = person.father 
+
+if(father == nil) %>
+<%=link_to_remote('Ajouter son père', :url=>{:action=>'add_parent_form',:id=>@person,:reltype=>0}, :update=>'edit')%>
 <br/>
 <% else %>
-<%= render(:partial=>'people/person_list', :object=>@person.father) %>
+<%= render(:partial=>'people/person_list', :object=>father) %>
 <% end %>
-<% if(person.mother_id == nil) %>
-<%=link_to_remote('Ajouter sa mère', :url=>{:action=>'add_parent_form',:id=>@person,:role=>:mother}, :update=>'edit')%>
+
+
+<% mother = person.mother 
+
+if(mother == nil) %>
+<%=link_to_remote('Ajouter sa mère', :url=>{:action=>'add_parent_form',:id=>@person,:reltype=>0}, :update=>'edit')%>
 <br/>
 <% else %>
-<%= render(:partial=>'people/person_list', :object=>@person.mother) %>
+<%= render(:partial=>'people/person_list', :object=>mother) %>
 <% end %>
 </ul>
 </div>

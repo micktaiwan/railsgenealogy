@@ -1,5 +1,5 @@
 <div class="form">
-<% if(role != nil) %>
+<% if(reltype != nil) %>
 Vous ajoutez une nouvelle relation:<br/>
 <br/>
 <% end %>
@@ -12,14 +12,18 @@ Vous ajoutez une nouvelle relation:<br/>
   <label for='person_fam_name'>Nom:
   </label>
   <%= text_field :person, :fam_name, :size=>10 %> de jeune fille pour une femme<br/>
-  <br/>
+
   
-  
+  <label for='person_sex'>Homme:</label>
+  <%= radio_button :person, :sex, 0 %>
+  Femme:
+  <%= radio_button :person, :sex, 1 %><br/>
+  <br/>  
   <label for='submit'>&nbsp;</label>
   <%= submit_tag 'Ajouter' %>
   
-<% if(role != nil) %>
-<input type="hidden" name="role" value="<%=role%>">
+<% if(reltype != nil) %>
+<input type="hidden" name="reltype" value="<%=reltype%>">
 <input type="hidden" name="for_id" value="<%=id%>">
 <% end %>
   
