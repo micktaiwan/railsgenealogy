@@ -62,5 +62,14 @@ class PeopleController < ApplicationController
     r.save
   end
 
+  def del_rel
+    from = params['from_id']
+    to = params['to_id']
+    reltype = params['reltype']
+    Relation.delete_all(["from_id=? and to_id=? and reltype=?",from,to,reltype])
+    render(:text=>'ok')
+  end 
+  
+  
 end
 

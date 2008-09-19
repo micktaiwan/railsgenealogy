@@ -35,7 +35,11 @@ function Graph() {
       return p;
       }    
     }
-
+    
+  this.clear = function() {
+    //_graph.clear();
+    alert('pas encore fait');
+    }
 }
  
 

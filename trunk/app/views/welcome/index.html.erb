@@ -11,7 +11,11 @@ Noms dans la base:<br/>
 <div id="main">
 <%=link_to_remote('Entrer un nouveau nom',
   :url=>{ :controller=>'people', :action=>'get_new_form'},
-  :update=>'edit')%><br/>
+  :update=>'edit')%>
+
+<%=link_to_function('Effacer l\'arbre', 'graph.clear()')%>
+  
+  <br/>
 <br/>
 <div id='edit'></div><br/>
 <div id='graph'></div>
