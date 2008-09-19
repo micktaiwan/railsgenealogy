@@ -4,20 +4,25 @@
   <label for='person_name'>Prénom:</label>
   <%= text_field :person, :surname, :size=>10 %><br/>
   
-  <label for='person_fam_name'>Nom:
-  </label>
+  <label for='person_fam_name'>Nom:</label>
   <%= text_field :person, :fam_name, :size=>10 %> de jeune fille pour une femme<br/>
-  <label for='person_sex'>Homme:</label>
-  <%= radio_button :person, :sex, 0 %>
-  Femme:
-  <%= radio_button :person, :sex, 1 %><br/>
-
-  <label for='person_fam_name'>Naissance:</label>
+  
+  <label for='person_sex'>&nbsp;</label>
+  <%= radio_button :person, :sex, 0%> Homme  
+  <%= radio_button :person, :sex, 1, :style=>"margin-left:20px;" %> Femme<br/>
+  
+  <label for='person_birth'>Naissance:</label>
   <%= text_field :person, :birth, :size=>10 %> AAAA/MM/JJ on verra ça plus tard<br/>
 
+  <label for='person_death'>Mort:</label>
+  <%= text_field :person, :death, :size=>10 %> AAAA/MM/JJ on verra ça plus tard<br/>
 
-  <br/>
+  <label for='person_notes'>Notes:</label>
+  <%= text_area :person, :notes, :rows=>4 %><br/>
 
+  <br/>  
+  <label for='submit'>&nbsp;</label>
   <%= submit_tag 'Sauver' %>
+  
 <% end %>
 </div>
