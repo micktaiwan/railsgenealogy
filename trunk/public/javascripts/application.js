@@ -1,6 +1,4 @@
-// Place your application-specific JavaScript functions and classes here
-// This file is automatically included by javascript_include_tag :defaults
-
+// Genealogy application client scripts
 
 // Log helper
 function log(t) {
@@ -19,30 +17,43 @@ function Graph() {
     }
 
   // add a person to the graph
-  // will verify if the person is already in the graph 
+  // will verify if the person is already in the graph
+  // calculate its position 
   this.add_person = function(id) {
     // First see id this person is already in the graph
     log('graph add_person');
     i = contains(id)
     if(i != -1) {
       log('already in graph');
-      return _graph[i];
+      p = _graph[i];
+      p.highlight();
       }
     else {
       log('adding '+id);
       p = new Person(id);
       _graph.push(p);
-      return p;
+      this.organize();
       }    
+    return p;
     }
   
   this.erase_person = function(p) {
-    //new Effect.Shrink(p.element);
+    //  new Effect.Shrink(p.element);
     p.element.remove();
     }  
   this.clear = function() {
     _graph.each(this.erase_person);
     _graph.clear();
+    }
+    
+    
+  function move(p) {
+    new Effect.Move(p.element, {x:30,y:40, mode: 'absolute'});
+    }
+      
+  // will recalculate all persons positions
+  this.organize = function() {
+    _graph.each(move);
     }
 }
  
@@ -50,7 +61,7 @@ function Graph() {
 // Class Person
 // inputs:
 //  DB id of the person
-//  text: the text to display
+// the DOM element id is assumed to be 'person_'+id
 function Person(id) {
   log('new Person '+id);
   this.id = id
@@ -61,8 +72,6 @@ function Person(id) {
     return;
     }
   new Draggable(this.element.id);
-  new Effect.Shake(this.element.id, {duration: 0.1});
-  //new Effect.Move(this.element.id, { x: 20, y: 30, mode: 'relative', delay: 0.1 });
 
   // the element graphical aspect is generated from a partial
   //db_update(id);
@@ -81,9 +90,9 @@ function Person(id) {
     //this.element.innerHTML = 'not done yet';
     }
   
-  // just hightlight the element in the graph 
+  // just hightlight the element 
   this.highlight = function() {
-    new Effect.Highlight(this.element.id, {duration: 2});
+    new Effect.Shake(this.element.id, {duration: 2});
     }
   }
 
