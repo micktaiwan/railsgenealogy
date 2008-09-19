@@ -8,6 +8,3 @@ page << "}"
 # then insert it in the graph object
 page << "p = graph.add_person("+id+");"
 
-page << "p.highlight();"
-#page << "p.add_family();"
-
