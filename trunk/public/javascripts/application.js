@@ -35,10 +35,14 @@ function Graph() {
       return p;
       }    
     }
-    
+  
+  this.erase_person = function(p) {
+    //new Effect.Shrink(p.element);
+    p.element.remove();
+    }  
   this.clear = function() {
-    //_graph.clear();
-    alert('pas encore fait');
+    _graph.each(this.erase_person);
+    _graph.clear();
     }
 }
  
