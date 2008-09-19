@@ -60,11 +60,13 @@ html, body {
   }
   
 label {
-  width: 60px;
+  width: 70px;
+  line-height: 20px;
   float: left;
   text-align: right;
+  vertical-align: text-bottom;
   margin-right: 4px;
-  display: block
+  display: block;
   }
 
 .p_ul {
