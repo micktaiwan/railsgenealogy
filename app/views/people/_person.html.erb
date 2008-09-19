@@ -15,7 +15,7 @@ if(father == nil) %>
 <%=link_to_remote('Ajouter son père', :url=>{:action=>'add_parent_form',:id=>@person,:reltype=>0}, :update=>'edit')%>
 <br/>
 <% else %>
-<%= render(:partial=>'people/person_list', :object=>father) %>
+<%= render(:partial=>'people/relation', :object=>father, :locals=>{:to=>person,:reltype=>0}) %>
 <% end %>
 
 
@@ -25,12 +25,12 @@ if(mother == nil) %>
 <%=link_to_remote('Ajouter sa mère', :url=>{:action=>'add_parent_form',:id=>@person,:reltype=>0}, :update=>'edit')%>
 <br/>
 <% else %>
-<%= render(:partial=>'people/person_list', :object=>mother) %>
+<%= render(:partial=>'people/relation', :object=>mother, :locals=>{:to=>person,:reltype=>0}) %>
 <% end %>
 </ul>
 Enfants:
 <ul class="p_ul">
-<%= render(:partial=>'people/person_list', :collection=>person.children) %>
+<%= render(:partial=>'people/relation', :collection=>person.children, :locals=>{:from=>person,:reltype=>0}) %>
 </ul>
 
 </div>

@@ -1,0 +1,16 @@
+<li id="rel_<%=relation.id%>">
+<%
+if(from)
+  to = relation.id
+elsif(to)
+  from = relation.id
+else
+%>Error: _relation.hmtl.erb: from and to are not defined<%  
+end
+%>
+<%=link_to_remote('eff',:url=>{:controller=>'people', :action=>'del_rel', :from_id=>from,:to_id=>to,:reltype=>reltype}, :update=>'rel_'+relation.id.to_s)%>
+<%= relation.fam_name %>
+<%= relation.surname %>
+<%=link_to_remote('voir',:url=>{:controller=>'people', :action=>'view', :id=>relation.id})%>
+</li>
+
