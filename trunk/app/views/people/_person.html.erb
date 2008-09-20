@@ -1,39 +1,39 @@
-<div class="person" id="person_<%= person.id %>">
-<%= person.surname %> <%= person.fam_name %>
+<div  class="person" id="person_<%= person.id %>">		<%= person.surname %> <%= person.fam_name %>
 
-<a href="#" onclick="new Effect.toggle('more_<%= person.id %>','blind',{duration:0.5});return false;">plus</a>...<br/>
+      <a href="#" onclick="new Effect.toggle('more_<%= person.id %>','blind',{duration:0.5});return false;">plus</a>...<br/>
 
-<div id="more_<%= person.id %>" style="display:none">
-<%=link_to_remote('Editer',:url=>{:controller=>'people', :action=>'edit', :id=>person.id})%><br/>
-Naissance: <%= person.birth %><br/>
-<br/>
-Parents:
-<ul class="p_ul">
-<% father = person.father 
+      <div id="more_<%= person.id %>" style="display:none">
+      <%=link_to_remote('Editer',:url=>{:controller=>'people', :action=>'edit', :id=>person.id})%><br/>
+      <% if person.birth %>Naissance: <%= person.birth %><br/><%end%>
+      <% if person.death %>Mort: <%= person.death %><br/><%end%>
+      <% if person.notes and person.notes != "" %>Notes: <%= h person.notes %><br/><%end%>
+      <br/>
+      Parents:
+      <ul class="p_ul">
+      <% father = person.father 
 
-if(father == nil) %>
-<%=link_to_remote('Ajouter son père', :url=>{:action=>'add_parent_form',:id=>@person,:reltype=>0}, :update=>'edit')%>
-<br/>
-<% else %>
-<%= render(:partial=>'people/relation', :object=>father, :locals=>{:to=>person,:reltype=>0}) %>
-<% end %>
+      if(father == nil) %>
+      <%=link_to_remote('Ajouter son père', :url=>{:action=>'add_parent_form',:id=>@person,:reltype=>0}, :update=>'edit')%>
+      <br/>
+      <% else %>
+      <%= render(:partial=>'people/relation', :object=>father, :locals=>{:to=>person,:reltype=>0}) %>
+      <% end %>
 
 
-<% mother = person.mother 
+      <% mother = person.mother 
 
-if(mother == nil) %>
-<%=link_to_remote('Ajouter sa mère', :url=>{:action=>'add_parent_form',:id=>@person,:reltype=>0}, :update=>'edit')%>
-<br/>
-<% else %>
-<%= render(:partial=>'people/relation', :object=>mother, :locals=>{:to=>person,:reltype=>0}) %>
-<% end %>
-</ul>
-Enfants:
-<ul class="p_ul">
-<%= render(:partial=>'people/relation', :collection=>person.children, :locals=>{:from=>person,:reltype=>0}) %>
-</ul>
+      if(mother == nil) %>
+      <%=link_to_remote('Ajouter sa mère', :url=>{:action=>'add_parent_form',:id=>@person,:reltype=>0}, :update=>'edit')%>
+      <br/>
+      <% else %>
+      <%= render(:partial=>'people/relation', :object=>mother, :locals=>{:to=>person,:reltype=>0}) %>
+      <% end %>
+      </ul>
+      Enfants:
+      <ul class="p_ul">
+      <%= render(:partial=>'people/relation', :collection=>person.children, :locals=>{:from=>person,:reltype=>0}) %>
+      </ul>
 
 </div>
 
-</div>
 

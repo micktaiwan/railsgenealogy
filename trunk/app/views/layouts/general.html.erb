@@ -11,19 +11,55 @@
 	<style type="text/css" title="currentStyle" media="screen">
 		@import '/stylesheets/styles.css';
 	</style>
-	
 </head>
 <body>
+<!--	<div class="content">
 
-<div id="header"><h1>Genealogie</h1></div>
+		<div class="header_right">
 
-<div id="menu">un super site de g&eacute;n&eacute;alogie bient&#244;t sur vos &eacute;crans</div>
+			<div class="top_info">
+				<div class="top_info_right">
+					<p><b>Pas loggué</b> <a href="#">Log in</a>  or <a href="#">register</a> mais c'est normal!</p>-->					
+<!--
+				</div>		
+			</div>
+					
+			<div class="bar">
+				<ul>
+					<li class="slogan">Menu:</li>
+					<li class="active">Début</li>
+					<li><a href="#" accesskey="b">Milieu</a></li>
+					<li><a href="#" accesskey="a">Fin</a></li>
+				</ul>
+			</div>
 
-<div id="content"><%= yield %></div>
+		</div>
+-->			
+		<div class="logo">
+			<h1><a href="#" title="Ma famille !">Toute la <span class="red">généalogie</span></a></h1>
+			<p>Qui allez-vous découvrir aujourd'hui?</p>
+		</div>
+<!--		
+		<div class="search_field">
+			<form method="post" action="?">
+				<p><span class="grey">Recherche de nom</span>&nbsp;&nbsp; <input type="text" name="search" class="search" /> <input type="submit" value="Chercher" class="button" /></p>
+			</form>
+		</div>
+		
+		<div class="newsletter">
+			<p> </p>
+		</div>
+-->
+		<div class="subheader"></div>
 
-<div id="footer">Ben c'est pas fini hein... Genealogy (c) 2008</div>
+<%= yield %>
 
+
+<div class="footer">
+	<p><!--<a href="#">RSS Feed</a> | <a href="#">Contact</a> | <a href="#">Accessibility</a> | <a href="#">Products</a> | <a href="#">Disclaimer</a> | -->
+	<a href="http://jigsaw.w3.org/css-validator/check/referer">CSS</a> and <a href="http://validator.w3.org/check?uri=referer">XHTML</a> | 
+	&copy; Copyright 2008 Toute la généalogie</p>
+</div>
+<!--</div>-->
 </body>
-
 </html>
-
