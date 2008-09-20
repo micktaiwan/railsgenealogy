@@ -32,7 +32,8 @@ function Graph() {
       log('adding '+id);
       p = new Person(id);
       _graph.push(p);
-      this.organize();
+      //this.set_position(p);
+      //this.organize();
       }    
     return p;
     }
@@ -41,14 +42,20 @@ function Graph() {
     //  new Effect.Shrink(p.element);
     p.element.remove();
     }  
+  
   this.clear = function() {
     _graph.each(this.erase_person);
     _graph.clear();
     }
-    
+  
+  // calculate position relatively to others
+  this.set_position = function(p) {
+    p.x = 300;
+    p.y = _graph.size()*30+100;
+    }  
     
   function move(p) {
-    new Effect.Move(p.element, {x:30,y:40, mode: 'absolute'});
+    new Effect.Move(p.element, {x:p.x,y:p.y, mode: 'absolute'});
     }
       
   // will recalculate all persons positions
@@ -65,13 +72,18 @@ function Graph() {
 function Person(id) {
   log('new Person '+id);
   this.id = id
+  this.x = 60;
+  this.y = 60;
+  this.parents = new Array();
+  this.children = new Array();
+  
   
   this.element = $('person_'+id);
   if(this.element == null) {
     alert('Before adding a element to the graph, you must create it in the DOM');
     return;
     }
-  new Draggable(this.element.id);
+  new Draggable(this.element);
 
   // the element graphical aspect is generated from a partial
   //db_update(id);

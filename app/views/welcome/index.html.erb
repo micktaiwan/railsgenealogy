@@ -1,26 +1,24 @@
-<div id="side">
-Noms dans la base:<br/>
-<br/>
-<ul>
-<%= render(:partial=>'people/person_list', :collection=>@people) %>
-</ul>
-</div>
+<div class="left">
 
-
-
-<div id="main">
 <%=link_to_remote('Entrer un nouveau nom',
   :url=>{ :controller=>'people', :action=>'get_new_form'},
   :update=>'edit')%>
 
 <%=link_to_function('Effacer l\'arbre', 'graph.clear()')%>
   
-  <br/>
+<br/>
 <br/>
 <div id='edit'></div><br/>
 <div id='graph'></div>
+
 </div>
 
+<div class="right">
+Noms dans la base:<br/>
+<br/>
+<ul>
+<%= render(:partial=>'people/person_list', :collection=>@people) %>
+</ul>
 
-
+</div>
 
