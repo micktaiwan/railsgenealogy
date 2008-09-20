@@ -35,6 +35,16 @@ class PeopleController < ApplicationController
     @person = Person.find(params['id'])
     render(:partial=>'add_parent_form', :locals=>{:reltype=>params['reltype']})
   end
+
+  def search_view
+    name =  params[:search][:name].split(' ')
+    @person = Person.find_by_surname_and_fam_name(name[0],name[1])
+    if(@person == nil)
+      render(:text=>'Pas trouvé '+params[:search][:name]+', mais en même c\'est pas éttonant avec ma fonction de merde', :status=>500)
+      return
+    end
+    render(:action=>'view', :id=>@person.id)
+  end
   
   def auto_complete_for_search_name
     #re = Regexp.new("#{params[:person][:name]}", "i")

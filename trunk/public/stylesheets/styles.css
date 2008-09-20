@@ -1,11 +1,17 @@
  
-body { 
+html, body {
+	height:100%; 
+  }
+
+
+
+ body { 
 	padding: 0 10px 0 10px; 
 	margin: 0; 
 	font: 0.74em Arial, Helvetica, sans-serif; 
 	line-height: 1.5em;
 	background: #fff; 
-	color: #454545; 
+	color: #454545;
 }
 
 a {
@@ -72,7 +78,8 @@ ul {
 }
 
 form { 
-	margin: 0; 
+	margin: 0;
+	display: inline; 
 }
 
 input.search { 
@@ -174,22 +181,14 @@ input.login {
 .search_field { 
 	text-align: right;
 	float: right;
-	width: 540px;
 	height: 38px;
 	background: #464548 url(/images/searchbg.gif) no-repeat top right; 
 	color: #000;
 	clear: both;
 	padding: 10px 10px 0 0;
+	margin: 3px 0 3px 0;
 }
-
-.grey {
-	font-size: 1.2em;
-	font-weight: bold;
-	color: #ccc;
-	background: inherit;
-	
-}
-
+
 .search {
 	font-size: 1.2em;
 	font-weight: bold;
@@ -198,13 +197,15 @@ input.login {
 }
 
 .newsletter {
-	float: left;
+	float: right;
 	height: 33px;
-	padding: 15px 0 0 15px;
-	width: 192px;
+	padding: 15px 5px 0 15px;
 	background: #6E6E6E url(/images/newsletterbg.gif) no-repeat;
 	color: #FFF;
-	margin: 0 0 3px 0;
+	margin: 3px 0 3px 0;
+	font-size: 1.2em;
+	font-weight: bold;
+	color: #ccc;
 }
 
 .subheader {
@@ -326,6 +327,9 @@ label {
 	color: #808080;
 	background: #FFF url(/images/dot.gif) repeat-x;
 	padding: 8px 0;
+	position: absolute;
+	bottom: 0;
+	width: 100%;
 }
 
 .footer a {
@@ -351,6 +355,7 @@ div.auto_complete ul li {
   margin:0;
   padding:3px;
   color: #000;
+  text-align:left;
 }
 div.auto_complete ul li.selected {
   background-color: #ffb;
