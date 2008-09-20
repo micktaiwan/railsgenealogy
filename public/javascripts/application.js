@@ -32,7 +32,8 @@ function Graph() {
       log('adding '+id);
       p = new Person(id);
       _graph.push(p);
-      //this.set_position(p);
+      this.set_position(p);
+      move(p);
       //this.organize();
       }    
     return p;
@@ -50,7 +51,7 @@ function Graph() {
   
   // calculate position relatively to others
   this.set_position = function(p) {
-    p.x = 300;
+    p.x = 200;
     p.y = _graph.size()*30+100;
     }  
     
