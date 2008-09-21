@@ -1,6 +1,6 @@
 class PeopleController < ApplicationController
 
-  protect_from_forgery :except => [:auto_complete_for_search_name] 
+  protect_from_forgery :except => [:auto_complete_for_search_name,:auto_complete_for_add_name] 
 
   def get_new_form
     render(:partial=>'new_form', :locals=>{:reltype=>params['reltype'], :id=>params['id']})
@@ -31,9 +31,9 @@ class PeopleController < ApplicationController
     id = params['id']
     render(:text=>'not found', :status=>500) and return if id==nil
     @relatives = []
-    p = Person.find(id)
-    @relatives << p
-    p.close_relatives.each { |r|
+    @person = Person.find(id)
+    @relatives << @person
+    @person.close_relatives.each { |r|
       @relatives << r
       } 
   end
@@ -59,12 +59,18 @@ class PeopleController < ApplicationController
     @persons = Person.find(:all,:conditions=>"surname like '%#{str}%' or fam_name like '%#{str}%'").map {|p| p.surname+ " "+p.fam_name}
     render :inline => "<%= content_tag(:ul, @persons.map { |p| content_tag(:li, h(p)) }) %>"
   end
+  def auto_complete_for_add_name
+    #re = Regexp.new("#{params[:person][:name]}", "i")
+    str = params[:add][:name]
+    @persons = Person.find(:all,:conditions=>"surname like '%#{str}%' or fam_name like '%#{str}%'").map {|p| p.surname+ " "+p.fam_name}
+    render :inline => "<%= content_tag(:ul, @persons.map { |p| content_tag(:li, h(p)) }) %>"
+  end
 
   def add_rel
-    name =  params[:search][:name].split(' ')
+    name =  params[:add][:name].split(' ')
     @person = Person.find_by_surname_and_fam_name(name[0],name[1])
     if(@person == nil)
-      render(:text=>'Pas trouvé '+params[:search][:name]+', mais en même c\'est pas éttonant avec ma fonction de merde', :status=>500)
+      render(:text=>'Pas trouvé '+params[:add][:name]+', mais en même c\'est pas éttonant avec ma fonction de merde', :status=>500)
       return
     end
     add_relation(@person.id,params['reltype'].to_i,params['for_id'].to_i)

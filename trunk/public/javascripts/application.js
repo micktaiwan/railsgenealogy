@@ -26,15 +26,14 @@ function Graph() {
     if(i != -1) {
       log('already in graph');
       p = _graph[i];
-      p.highlight();
+      //p.highlight();
       }
     else {
       log('adding '+id);
       p = new Person(id);
       _graph.push(p);
       this.set_position(p);
-      move(p);
-      //this.organize();
+      //move(p);
       }    
     return p;
     }
@@ -51,17 +50,50 @@ function Graph() {
   
   // calculate position relatively to others
   this.set_position = function(p) {
-    p.x = 200;
-    p.y = _graph.size()*30+100;
+    p.x = 300;
+    p.y = _graph.size()*30+200;
     }  
     
   function move(p) {
     new Effect.Move(p.element, {x:p.x,y:p.y, mode: 'absolute'});
     }
-      
-  // will recalculate all persons positions
-  this.organize = function() {
-    _graph.each(move);
+  function get_person(id) {
+    index = contains(id);
+    if(index==-1) throw('id not found: '+id);
+    return _graph[index];
+    }
+
+  function __set_pp(p,id,pos) {
+    parent = get_person(id);
+    parent.x = p.x+pos*234;
+    parent.y = p.y-32;
+    move(parent);
+    }
+  function __set_cc(p,id,pos) {
+    child = get_person(id);
+    child.x = p.x+pos*234;
+    child.y = p.y+32;
+    move(child);
+    }
+  
+  function set_parents_position(p) {
+    for(i=0; i<p.parents.size(); i++) {
+      __set_pp(p,p.parents[i],i);
+      }
+    }    
+  function set_children_position(p) {
+    for(i=0; i<p.children.size(); i++) {
+      __set_cc(p,p.children[i],i);
+      }
+    }    
+  // will recalculate all persons positions, centered on p
+  this.organize = function(id) {
+    p = get_person(id);
+    //p.x = 300;
+    //p.y = 300;
+    move(p);
+    set_parents_position(p);
+    set_children_position(p);
     }
 }
  
@@ -96,11 +128,11 @@ function Person(id) {
       });
     }
 
-
-  // add all family members in the graphic
-  // inputs: DB id of the person
-  this.add_family = function() {
-    //this.element.innerHTML = 'not done yet';
+  // add relations to close relatives
+  // inputs: DB ids string of the persons
+  this.add_relatives = function(parents,children) {
+    if(parents !="") this.parents  = parents.split(',');
+    if(children!="") this.children = children.split(',');
     }
   
   // just hightlight the element 
