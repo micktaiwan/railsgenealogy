@@ -104,6 +104,12 @@ function Graph() {
 // the DOM element id is assumed to be 'person_'+id
 function Person(id) {
   log('new Person '+id);
+  this.element = $('person_'+id);
+  if(this.element == null) {
+    alert('Before adding a element to the graph, you must create it in the DOM');
+    return;
+    }
+  this.element.person = this
   this.id = id
   this.x = 60;
   this.y = 60;
@@ -111,12 +117,12 @@ function Person(id) {
   this.children = new Array();
   
   
-  this.element = $('person_'+id);
-  if(this.element == null) {
-    alert('Before adding a element to the graph, you must create it in the DOM');
-    return;
+  function drag_on_end(drag,mouse_event) {
+    p = drag.element.person;
+    p.x = parseFloat(drag.element.style.left);
+    p.y = parseFloat(drag.element.style.top);    
     }
-  new Draggable(this.element);
+  new Draggable(this.element, {onEnd: drag_on_end});
 
   // the element graphical aspect is generated from a partial
   //db_update(id);
