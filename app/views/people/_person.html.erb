@@ -1,5 +1,6 @@
 <div  class="person" id="person_<%= person.id %>">		<%= person.surname %> <%= person.fam_name %>
 
+      <%=link_to_remote('reorg',:url=>{:controller=>'people', :action=>'view', :id=>person.id})%>
       <a href="#" onclick="new Effect.toggle('more_<%= person.id %>','blind',{duration:0.5});return false;">plus</a>...<br/>
 
       <div id="more_<%= person.id %>" style="display:none">
