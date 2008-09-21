@@ -313,7 +313,8 @@ label {
   border: 1px solid #CCC;
   background: #EEE;
   padding: 5px;
-  cursor: move;  
+  cursor: move;
+  z-index:2;  
   }
   
   
@@ -330,6 +331,7 @@ label {
 	position: absolute;
 	bottom: 0;
 	width: 100%;
+	z-index:0;
 }
 
 .footer a {

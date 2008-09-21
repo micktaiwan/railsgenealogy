@@ -1,6 +1,6 @@
 # insert graphically the elements
 
-page.replace_html :edit, "not found" and return if @relatives == nil
+page.replace_html :edit, "view.rjs: @relatives == nil" and return if @relatives == nil
 
 @relatives.each { |p|
   page << "if(!$('person_"+p.id.to_s+"')) {"
@@ -8,7 +8,11 @@ page.replace_html :edit, "not found" and return if @relatives == nil
   page << "}"
   # then insert it in the graph object
   page << "p = graph.add_person("+p.id.to_s+");"
+  page << "p.add_relatives('"+p.parents_ids+"','"+p.children_ids+"');"
   }
+
+# organize from the person perspective  
+page << "graph.organize("+@person.id.to_s+");"
 
 
 
