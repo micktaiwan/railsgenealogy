@@ -28,7 +28,14 @@ class PeopleController < ApplicationController
   end
   
   def view
-    @person = Person.find(params['id'])
+    id = params['id']
+    render(:text=>'not found', :status=>500) and return if id==nil
+    @relatives = []
+    p = Person.find(id)
+    @relatives << p
+    p.close_relatives.each { |r|
+      @relatives << r
+      } 
   end
   
   def add_parent_form
@@ -43,7 +50,7 @@ class PeopleController < ApplicationController
       render(:text=>'Pas trouvé '+params[:search][:name]+', mais en même c\'est pas éttonant avec ma fonction de merde', :status=>500)
       return
     end
-    render(:action=>'view', :id=>@person.id)
+    redirect_to(:action=>'view', :id=>@person.id)
   end
   
   def auto_complete_for_search_name
