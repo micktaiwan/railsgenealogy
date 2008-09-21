@@ -1,10 +1,14 @@
-id = @person.id.to_s
+# insert graphically the elements
 
-# insert graphically the element
-page << "if(!$('person_"+id+"')) {"
-page.insert_html :bottom, 'graph', {:partial => 'person', :object => @person}
-page << "}"
+page.replace_html :edit, "not found" and return if @relatives == nil
 
-# then insert it in the graph object
-page << "p = graph.add_person("+id+");"
+@relatives.each { |p|
+  page << "if(!$('person_"+p.id.to_s+"')) {"
+  page.insert_html :bottom, 'graph', {:partial => 'person', :object => p}
+  page << "}"
+  # then insert it in the graph object
+  page << "p = graph.add_person("+p.id.to_s+");"
+  }
+
+
 
