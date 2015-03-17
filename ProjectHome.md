@@ -1,0 +1,1 @@
+Genealogy manager in Rails
